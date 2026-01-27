@@ -16,10 +16,10 @@ export const ANIME_BY_ID = `query ($id: Int) {
 `;
 
 export const ANIME_BY_NAME = `
-query ($search: String, $page: Int, $perPage: Int) {
+query ($search: String, $page: Int, $perPage: Int, $sort: [MediaSort]) {
   Page(page: $page, perPage: $perPage) {
     pageInfo { currentPage hasNextPage }
-    media(search: $search, type: ANIME) {
+    media(search: $search, type: ANIME, sort: $sort) {
       id
       title { english romaji }
       averageScore
