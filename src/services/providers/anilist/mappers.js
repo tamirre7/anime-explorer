@@ -6,7 +6,7 @@ import { formatAiringYears } from '../../../utils/airingYears';
 export function anilistToAnimeSummary(anime) {
   return createAnimeSummary({
     id: String(anime.id),
-    title: pickTitle(anime),
+    title: anime?.title?.english,
     score: anime.averageScore ?? null,
     genres: anime.genres ?? [],
     imageUrl: anime?.coverImage?.large ?? null,
@@ -17,7 +17,7 @@ export function anilistToAnimeSummary(anime) {
 export function anilistToAnimeDetails(anime) {
   return createAnimeDetails({
     id: String(anime.id),
-    title: pickTitle(anime),
+    title: anime?.title?.english,
     score: anime.averageScore ?? null,
     genres: anime.genres ?? [],
     imageUrl: anime?.coverImage?.large ?? null,
