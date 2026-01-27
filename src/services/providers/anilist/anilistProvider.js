@@ -44,17 +44,21 @@ async function getAnimeDetails(animeId) {
   return anilistToAnimeDetails(data.Media);
 }
 
-async function searchAnimeByName(animeName, page = 1) {
-  const perPage = 12;
-
+async function searchAnimeByName({ animeName, page = 1, perPage = 12, sort }) {
   const data = await fetchAniList(ANIME_BY_NAME, {
     search: animeName.trim(),
     page,
     perPage,
+    sort: [anilistSortMap[sort] ?? anilistSortMap[DEFAULT_SORT]],
   });
 
-  const list = data?.Page?.media ?? [];
-  return list.map(anilistToAnimeSummary);
+  const items = (data?.Page?.media ?? []).map(anilistToAnimeSummary);
+  const hasNext = data?.Page?.pageInfo?.hasNextPage ?? false;
+
+  return {
+    items,
+    nextPage: hasNext ? page + 1 : null,
+  };
 }
 
 async function searchAnimeByCharacter(characterName, limit = 12) {
