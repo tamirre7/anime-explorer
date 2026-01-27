@@ -63,11 +63,8 @@ function jikanToAnimeSummary(anime) {
   return createAnimeSummary({
     id: String(anime.mal_id),
     title: anime.title_english ?? anime.title ?? anime.title_japanese ?? '',
-    episodes: anime.episodes ?? null,
     score: anime.score ?? null,
-    rating: anime.rating ?? null,
     genres: (anime.genres ?? []).map((g) => g.name),
-    synopsis: anime.synopsis ?? '',
     imageUrl: pickJikanImage(anime),
     airingYears: getAiringYears(anime) ?? '',
   });
@@ -83,7 +80,6 @@ function jikanToAnimeDetails(anime) {
     airingYears: getAiringYears(anime) ?? '',
     episodes: anime.episodes ?? null,
     synopsis: anime.synopsis ?? '',
-    status: anime.status ?? null,
     rating: anime.rating ?? null,
   });
 }
