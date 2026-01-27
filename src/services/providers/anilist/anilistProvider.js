@@ -1,3 +1,4 @@
+import { DEFAULT_SORT } from '../../../constants/animeSort';
 import { fetchAniList } from '../../http/anilistRequest';
 import { anilistToAnimeDetails, anilistToAnimeSummary } from './mappers';
 import {
@@ -7,6 +8,7 @@ import {
   CHARACTER_BY_NAME,
   ANIME_BY_CHARACTER,
 } from './queries';
+import { anilistSortMap } from './anilistSortMap';
 
 export const anilistProvider = {
   discover,
@@ -15,13 +17,24 @@ export const anilistProvider = {
   searchAnimeByCharacter,
 };
 
-async function discover(page = 1) {
+async function discover({ page = 1, sort = DEFAULT_SORT }) {
   const perPage = 12;
 
-  const data = await fetchAniList(DISCOVER, { page, perPage });
+  const data = await fetchAniList(DISCOVER, {
+    page,
+    perPage,
+    sort: [anilistSortMap[sort] ?? anilistSortMap[DEFAULT_SORT]],
+  });
 
   const list = data?.Page?.media ?? [];
-  return list.map(anilistToAnimeSummary);
+  const items = list.map(anilistToAnimeSummary);
+
+  const hasNext = data?.Page?.pageInfo?.hasNextPage ?? false;
+
+  return {
+    items,
+    nextPage: hasNext ? page + 1 : null,
+  };
 }
 
 async function getAnimeDetails(animeId) {

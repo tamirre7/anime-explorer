@@ -1,4 +1,6 @@
+import { DEFAULT_SORT } from '../../../constants/animeSort';
 import { fetchJson } from '../../http/fetchJson';
+import { sortAnimeLocally } from './jikanSort';
 import { jikanToAnimeDetails, jikanToAnimeSummary } from './mappers';
 
 const JIKAN_BASE_URL = 'https://api.jikan.moe/v4/';
@@ -10,9 +12,19 @@ export const jikanProvider = {
   searchAnimeByCharacter,
 };
 
-async function discover(page = 1) {
+async function discover({ page = 1, sort = DEFAULT_SORT }) {
   const res = await fetchJson(`${JIKAN_BASE_URL}top/anime?page=${page}`);
-  return res.data.map(jikanToAnimeSummary);
+
+  let items = (res.data ?? []).map(jikanToAnimeSummary);
+
+  items = sortAnimeLocally(items, sort);
+
+  const hasNext = res.pagination?.has_next_page ?? false;
+
+  return {
+    items,
+    nextPage: hasNext ? page + 1 : null,
+  };
 }
 
 async function getAnimeDetails(animeId) {
