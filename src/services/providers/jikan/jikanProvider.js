@@ -1,6 +1,5 @@
-import { fetchJson } from '../http/fetchJson';
-import { createAnimeDetails } from '../../models/animeDetails';
-import { createAnimeSummary } from '../../models/animeSummary';
+import { fetchJson } from '../../http/fetchJson';
+import { jikanToAnimeDetails, jikanToAnimeSummary } from './mappers';
 
 const JIKAN_BASE_URL = 'https://api.jikan.moe/v4/';
 
@@ -30,6 +29,7 @@ async function searchAnimeByName(animeName, page = 1) {
 }
 
 async function searchAnimeByCharacter(characterName, limit = 12) {
+  //get char id
   const normalizedCharacterName = encodeURIComponent(characterName.trim());
   const charactersFounded = await fetchJson(
     `${JIKAN_BASE_URL}characters?q=${normalizedCharacterName}&page=1`,
@@ -38,6 +38,7 @@ async function searchAnimeByCharacter(characterName, limit = 12) {
   const first = charactersFounded.data?.[0];
   if (!first) return [];
 
+  //get anime of char
   const charAnimeRes = await fetchJson(
     `${JIKAN_BASE_URL}characters/${first.mal_id}/anime`,
   );
@@ -57,46 +58,4 @@ async function searchAnimeByCharacter(characterName, limit = 12) {
     .map((result) => result.value?.data)
     .filter(Boolean)
     .map(jikanToAnimeSummary);
-}
-
-function jikanToAnimeSummary(anime) {
-  return createAnimeSummary({
-    id: String(anime.mal_id),
-    title: anime.title_english ?? anime.title ?? anime.title_japanese ?? '',
-    score: anime.score ?? null,
-    genres: (anime.genres ?? []).map((g) => g.name),
-    imageUrl: pickJikanImage(anime),
-    airingYears: getAiringYears(anime) ?? '',
-  });
-}
-
-function jikanToAnimeDetails(anime) {
-  return createAnimeDetails({
-    id: String(anime.mal_id),
-    title: anime.title_english ?? anime.title ?? anime.title_japanese ?? '',
-    score: anime.score ?? null,
-    genres: (anime.genres ?? []).map((g) => g.name),
-    imageUrl: pickJikanImage(anime),
-    airingYears: getAiringYears(anime) ?? '',
-    episodes: anime.episodes ?? null,
-    synopsis: anime.synopsis ?? '',
-    rating: anime.rating ?? null,
-  });
-}
-
-function getAiringYears(anime) {
-  const from = anime?.aired?.prop?.from?.year ?? null;
-  const to = anime?.aired?.prop?.to?.year ?? null;
-
-  if (!from) return null;
-  if (anime?.airing || !to) return `${from}-`;
-  if (from === to) return `${from}`;
-
-  return `${from}-${to}`;
-}
-
-function pickJikanImage(anime) {
-  return (
-    anime?.images?.webp?.image_url ?? anime?.images?.jpg?.image_url ?? null
-  );
 }

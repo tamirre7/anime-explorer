@@ -1,5 +1,5 @@
-import { anilistProvider } from './providers/anilistProvider';
-import { jikanProvider } from './providers/jikanProvider';
+import { anilistProvider } from './providers/anilist/anilistProvider';
+import { jikanProvider } from './providers/jikan/jikanProvider';
 
 const PROVIDER = 'JIKAN'; // 'JIKAN' | 'ANILIST'
 
