@@ -10,7 +10,7 @@
  * @property {string} synopsis
  * @property {string} imageUrl
  * @property {string} rating
- * @property {string} yearsOfAiring
+ * @property {string} airingYears
  */
 
 /**
@@ -23,7 +23,7 @@
  * @property {string} [synopsis]
  * @property {string} [imageUrl]
  * @property {string} [rating]
- * @property {string} [yearsOfAiring]
+ * @property {string} [airingYears]
  */
 
 /**
@@ -40,7 +40,7 @@ export function createAnimeDetails(input) {
     synopsis = '',
     imageUrl = '',
     rating = '',
-    yearsOfAiring = '',
+    airingYears = '',
   } = input;
 
   if (typeof id !== 'number') throw new TypeError('id must be a number');
@@ -56,6 +56,6 @@ export function createAnimeDetails(input) {
     synopsis,
     imageUrl,
     rating,
-    yearsOfAiring,
+    airingYears,
   };
 }
