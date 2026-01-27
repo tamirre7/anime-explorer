@@ -16,11 +16,12 @@ export const ANIME_BY_ID = `query ($id: Int) {
 `;
 
 export const ANIME_BY_NAME = `
-query ($search: String, $page: Int, $perPage: Int) {
+query ($search: String, $page: Int, $perPage: Int, $sort: [MediaSort]) {
   Page(page: $page, perPage: $perPage) {
-    media(search: $search, type: ANIME) {
+    pageInfo { currentPage hasNextPage }
+    media(search: $search, type: ANIME, sort: $sort) {
       id
-      title { english }
+      title { english romaji }
       averageScore
       genres
       startDate { year }
@@ -32,11 +33,12 @@ query ($search: String, $page: Int, $perPage: Int) {
 `;
 
 export const DISCOVER = `
-query ($page: Int, $perPage: Int) {
+query ($page: Int, $perPage: Int, $sort: [MediaSort]) {
   Page(page: $page, perPage: $perPage) {
-    media(type: ANIME, sort: POPULARITY_DESC) {
+    pageInfo { currentPage hasNextPage }
+    media(type: ANIME, sort: $sort) {
       id
-      title { english }
+      title { english romaji }
       averageScore
       genres
       status

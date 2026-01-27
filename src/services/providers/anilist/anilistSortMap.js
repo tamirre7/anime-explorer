@@ -1,0 +1,9 @@
+import { ANIME_SORT } from '../../../constants/animeSort';
+
+export const anilistSortMap = {
+  [ANIME_SORT.TRENDING_DESC]: 'TRENDING_DESC',
+  [ANIME_SORT.POPULARITY_DESC]: 'POPULARITY_DESC',
+  [ANIME_SORT.SCORE_DESC]: 'SCORE_DESC',
+  [ANIME_SORT.YEAR_DESC]: 'START_DATE_DESC',
+  [ANIME_SORT.TITLE_ASC]: 'TITLE_ROMAJI',
+};

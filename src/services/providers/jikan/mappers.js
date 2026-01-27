@@ -5,7 +5,7 @@ import { formatAiringYears } from '../../../utils/airingYears';
 export function jikanToAnimeSummary(anime) {
   return createAnimeSummary({
     id: String(anime.mal_id),
-    title: anime.title_english ?? anime.title ?? anime.title_japanese ?? '',
+    title: anime.title_english ?? '',
     score: anime.score ?? null,
     genres: (anime.genres ?? []).map((g) => g.name),
     imageUrl: pickJikanImage(anime),
@@ -16,7 +16,7 @@ export function jikanToAnimeSummary(anime) {
 export function jikanToAnimeDetails(anime) {
   return createAnimeDetails({
     id: String(anime.mal_id),
-    title: anime.title_english ?? anime.title ?? anime.title_japanese ?? '',
+    title: anime.title_english ?? '',
     score: anime.score ?? null,
     genres: (anime.genres ?? []).map((g) => g.name),
     imageUrl: pickJikanImage(anime),
