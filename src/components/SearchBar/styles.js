@@ -4,7 +4,8 @@ import { colors } from '../../theme/colors';
 export const searchBarStyles = StyleSheet.create({
   container: {
     gap: 3,
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   pressableContainer: {
     flexDirection: 'row',

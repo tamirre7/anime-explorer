@@ -3,13 +3,17 @@ import { colors } from '../../../src/theme/colors';
 import SearchBar from '../../../src/components/SearchBar/SearchBar';
 import Filters from '../../../src/components/Filters/Filters';
 import AnimeGrid from '../../../src/components/AnimeGrid/AnimeGrid';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function DiscoverTab() {
   return (
-    <View style={{ backgroundColor: colors.bg, flex: 1 }}>
+    <SafeAreaView
+      edges={['left', 'right', 'bottom']}
+      style={{ flex: 1, backgroundColor: colors.bg, paddingTop: 8 }}
+    >
       <SearchBar />
       <Filters />
       <AnimeGrid />
-    </View>
+    </SafeAreaView>
   );
 }
