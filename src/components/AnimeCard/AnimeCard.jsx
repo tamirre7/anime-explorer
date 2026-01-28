@@ -1,1 +1,1 @@
-export default function AnimeCard() {}
+export default function AnimeCard({ anime }) {}
