@@ -28,12 +28,6 @@ export function anilistToAnimeDetails(anime) {
   });
 }
 
-function pickTitle(anime) {
-  return (
-    anime?.title?.english ?? anime?.title?.romaji ?? anime?.title?.native ?? ''
-  );
-}
-
 function getAiringYears(anime) {
   const fromYear = anime?.startDate?.year ?? null;
   const toYear = anime?.endDate?.year ?? null;
