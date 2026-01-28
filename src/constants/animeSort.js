@@ -5,5 +5,3 @@ export const ANIME_SORT = {
   YEAR_DESC: 'YEAR_DESC',
   TITLE_ASC: 'TITLE_ASC',
 };
-
-export const DEFAULT_SORT = ANIME_SORT.TRENDING_DESC;

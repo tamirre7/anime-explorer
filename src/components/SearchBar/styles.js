@@ -17,13 +17,13 @@ export const searchBarStyles = StyleSheet.create({
     height: 30,
     margin: 10,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.05)',
+    borderColor: colors.bg,
     borderRadius: 10,
     padding: 7,
   },
   inactiveSearchMethod: {
     fontSize: 12,
-    color: colors.text,
+    color: colors.muted,
   },
 
   activeSearchMethod: {

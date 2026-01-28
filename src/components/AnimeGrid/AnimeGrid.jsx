@@ -8,14 +8,19 @@ export default function AnimeGrid({ visibleSeries }) {
     <FlatList
       key={`grid-${numColumns}`}
       data={visibleSeries}
-      renderItem={({ item }) => <AnimeCard anime={item} />}
+      renderItem={({ item }) => (
+        <View style={{ flex: 1, marginBottom: 12 }}>
+          <AnimeCard anime={item} />
+        </View>
+      )}
       keyExtractor={(item) => String(item.id)}
       numColumns={numColumns}
       contentContainerStyle={{ padding: 12 }}
       columnWrapperStyle={
-        numColumns > 1 ? { justifyContent: 'space-between' } : undefined
+        numColumns > 1
+          ? { justifyContent: 'space-between', gap: 12 }
+          : undefined
       }
-      ItemSeparatorComponent={() => <View style={{ height: 18 }} />}
     />
   );
 }
