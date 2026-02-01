@@ -3,15 +3,12 @@ import { createAnimeSummary } from '../../../models/animeSummary';
 import { formatAiringYears } from '../../../utils/airingYears';
 
 export function jikanToAnimeSummary(anime) {
-  const yearStart = anime?.aired?.prop?.from?.year ?? anime?.year ?? null;
   return createAnimeSummary({
     id: anime.mal_id,
     title: anime.title_english || anime.title || '',
     score: anime.score ?? null,
-    genres: (anime.genres ?? []).map((g) => g.name),
     imageUrl: pickJikanImage(anime),
     airingYears: getAiringYears(anime) ?? '',
-    yearStart,
   });
 }
 

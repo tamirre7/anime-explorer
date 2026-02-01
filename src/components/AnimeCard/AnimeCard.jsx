@@ -2,14 +2,7 @@ import { useRouter } from 'expo-router';
 import { Image, Pressable, Text, View } from 'react-native';
 import { animeCardStyles } from './styles';
 
-export default function AnimeCard({
-  id,
-  title,
-  score,
-  genres,
-  imageUrl,
-  airingYears,
-}) {
+export default function AnimeCard({ id, title, score, imageUrl, airingYears }) {
   const router = useRouter();
 
   return (

@@ -13,10 +13,11 @@ export const jikanProvider = {
 };
 
 async function discover({ page = 1, sort = DEFAULT_SORT }) {
-  const sortQuery = buildSortQuery(sort);
-  const res = await fetchJson(
-    `${JIKAN_BASE_URL}anime?${sortQuery}&page=${page}`,
-  );
+  const res = await fetchJson(`${JIKAN_BASE_URL}top/anime?page=${page}`);
+
+  let items = (res.data ?? []).map(jikanToAnimeSummary);
+
+  items = sortAnimeLocally(items, sort);
 
   const items = (res.data ?? []).map(jikanToAnimeSummary);
   const hasNext = res.pagination?.has_next_page ?? false;

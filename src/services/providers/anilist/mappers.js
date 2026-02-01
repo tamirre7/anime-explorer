@@ -8,10 +8,8 @@ export function anilistToAnimeSummary(anime) {
     id: anime.id,
     title: anime?.title?.english || anime?.title?.romaji || '',
     score: anime.averageScore ?? null,
-    genres: anime.genres ?? [],
     imageUrl: anime?.coverImage?.large ?? null,
     airingYears: getAiringYears(anime) ?? '',
-    yearStart: anime?.startDate?.year ?? null,
   });
 }
 

@@ -1,14 +1,12 @@
 // @ts-check
 
 /**
- * @typedef {object} AnimeDetails
+ * @typedef {object} AnimeSummary
  * @property {number} id
  * @property {string} title
  * @property {number|null} score
- * @property {string[]} genres
  * @property {string} imageUrl
  * @property {string} airingYears
- * @property {number|null} yearStart
  */
 
 /**
@@ -16,26 +14,16 @@
  * @property {number} id
  * @property {string} title
  * @property {number|null} [score]
- * @property {string[]} [genres]
  * @property {string} [imageUrl]
  * @property {string} [airingYears]
- * @property {number|null} [yearStart]
  */
 
 /**
  * @param {AnimeSummaryInput} input
- * @returns {AnimeDetails}
+ * @returns {AnimeSummary}
  */
 export function createAnimeSummary(input) {
-  const {
-    id,
-    title,
-    score = null,
-    genres = [],
-    imageUrl = '',
-    airingYears = '',
-    yearStart = null,
-  } = input;
+  const { id, title, score = null, imageUrl = '', airingYears = '' } = input;
 
   if (typeof id !== 'number') throw new TypeError('id must be a number');
   if (typeof title !== 'string' || !title)
@@ -45,9 +33,7 @@ export function createAnimeSummary(input) {
     id,
     title,
     score,
-    genres,
     imageUrl,
     airingYears,
-    yearStart,
   };
 }
