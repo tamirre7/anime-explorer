@@ -1,9 +1,19 @@
-import { View, Text } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+import { View } from 'react-native';
 
-export default function AnimeDetails() {
+import AnimeDetails from '../../src/components/AnimeDetails/AnimeDetails';
+import useAnimeDetails from '../../src/hooks/useAnimeDetails';
+import { colors } from '../../src/theme/colors';
+
+export default function DetailsTab() {
+  const { id } = useLocalSearchParams();
+  const animeId = Number(id);
+
+  const { data, isLoading, isError, error } = useAnimeDetails(animeId);
+
   return (
-    <View>
-      <Text>Hello anime Details</Text>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <AnimeDetails {...data} />
     </View>
   );
 }
