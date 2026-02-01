@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
 import { Image, Pressable, Text, View } from 'react-native';
+import AnimeScore from '../AnimeScore/AnimeScore';
 import { animeCardStyles } from './styles';
 
 export default function AnimeCard({ id, title, score, imageUrl, airingYears }) {
@@ -21,9 +22,7 @@ export default function AnimeCard({ id, title, score, imageUrl, airingYears }) {
         </Text>
         <View style={animeCardStyles.spacer} />
         <View style={animeCardStyles.seriesDataContainer}>
-          <Text style={animeCardStyles.seriesMetaData}>
-            <Text style={animeCardStyles.star}>★</Text> {score}
-          </Text>
+          <AnimeScore score={score} />
           <Text style={animeCardStyles.seriesMetaData}>{airingYears}</Text>
         </View>
       </View>

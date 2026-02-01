@@ -17,6 +17,8 @@ export default function RootLayout() {
             name="anime-details/[id]"
             options={{
               headerTitle: 'Anime Details',
+              headerBackTitle: 'Back',
+              headerTintColor: colors.text,
               headerStyle: { backgroundColor: colors.surface },
               headerTitleStyle: { color: colors.text },
             }}
