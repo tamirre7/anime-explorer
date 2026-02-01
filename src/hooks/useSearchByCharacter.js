@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../services/apiClient';
 
-export default function useSearchByCharacter(characterName) {
-  const trimmedName = characterName?.trim() ?? '';
-
+export default function useSearchByCharacter(name, options = {}) {
+  const trimmed = name?.trim() ?? '';
   return useQuery({
-    queryKey: ['char-anime', trimmedName],
-    queryFn: () => api.searchAnimeByCharacter(trimmedName),
-    enabled: trimmedName.length > 0,
+    queryKey: ['char-anime', trimmed],
+    queryFn: () => api.searchAnimeByCharacter(trimmed),
+    enabled: options.enabled ?? trimmed.length > 0,
   });
 }

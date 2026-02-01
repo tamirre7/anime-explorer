@@ -4,10 +4,9 @@ import { formatAiringYears } from '../../../utils/airingYears';
 
 export function jikanToAnimeSummary(anime) {
   return createAnimeSummary({
-    id: String(anime.mal_id),
-    title: anime.title_english ?? '',
+    id: anime.mal_id,
+    title: anime.title_english || anime.title || '',
     score: anime.score ?? null,
-    genres: (anime.genres ?? []).map((g) => g.name),
     imageUrl: pickJikanImage(anime),
     airingYears: getAiringYears(anime) ?? '',
   });
@@ -15,8 +14,8 @@ export function jikanToAnimeSummary(anime) {
 
 export function jikanToAnimeDetails(anime) {
   return createAnimeDetails({
-    id: String(anime.mal_id),
-    title: anime.title_english ?? '',
+    id: anime.mal_id,
+    title: anime.title_english || anime.title || '',
     score: anime.score ?? null,
     genres: (anime.genres ?? []).map((g) => g.name),
     imageUrl: pickJikanImage(anime),
@@ -28,11 +27,11 @@ export function jikanToAnimeDetails(anime) {
 }
 
 function getAiringYears(anime) {
-  const from = anime?.aired?.prop?.from?.year ?? null;
+  const from = anime?.aired?.prop?.from?.year ?? anime?.year ?? null;
   const to = anime?.aired?.prop?.to?.year ?? null;
   const isOngoing = anime?.airing;
 
-  formatAiringYears(from, to, isOngoing);
+  return formatAiringYears(from, to, isOngoing);
 }
 
 function pickJikanImage(anime) {

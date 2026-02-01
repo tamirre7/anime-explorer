@@ -4,5 +4,5 @@ export const colors = {
   text: 'azure',
   muted: 'rgba(240, 255, 255, 0.7)',
   accent: 'gold',
-  border: 'rgba(255,255,255,0.12)',
+  border: 'rgba(255,255,255,0.05)',
 };
