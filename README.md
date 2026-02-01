@@ -1,37 +1,56 @@
 # Anime Explorer
 
-A React Native (Expo) anime explorer app built with Expo Router.  
-The app focuses on a simple flow: **Discover**, **Search**, **Favorites (local)**, and **Series Details**.
+A React Native mobile app for discovering and exploring anime. Built with Expo and Expo Router.
 
-This repository is currently in early development (scaffolding + project structure in progress).
+## Features
+
+- **Discover** - Browse anime with sorting options (trending, popular, top rated, newest, alphabetical)
+- **Search** - Search by anime title or character name
+- **Details** - View detailed information about each anime
+- **Favorites** - Save your favorite anime locally
 
 ## Tech Stack
 
-- React Native + Expo
-- Expo Router (file-based routing)
-- AniList GraphQL API (primary provider)
-- Planned: Jikan REST API (secondary provider) with an interchangeable provider layer
-- Local persistence for favorites (to be implemented)
+- **React Native** + **Expo** - Cross-platform mobile development
+- **Expo Router** - File-based navigation
+- **React Query** - Data fetching, caching, and pagination
+- **Jikan API** - Anime data provider (with swappable provider architecture)
 
-## Planned Features
+## Architecture
 
-- **Discover**: trending/popular anime list with pagination
-- **Search**: title-based search
-- **Details**: series details page
-- **Favorites**: save/remove favorites locally (no backend)
-- **Sorting/Filtering**: basic sort options (e.g., rating/year) and genre filtering (TBD)
-- **Provider swap**: minimize UI changes when switching between AniList and Jikan
+```
+src/
+├── components/     # Reusable UI components
+├── hooks/          # Custom React hooks
+├── models/         # Data models with validation
+├── services/       # API clients and providers
+├── constants/      # App constants
+├── theme/          # Colors and styling
+└── utils/          # Utility functions
+```
+
+**Key patterns:**
+- Provider pattern for API abstraction (easily swap between Jikan/AniList)
+- Custom hooks for data fetching logic
+- Factory functions for data model validation
+- Separated styles for each component
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (LTS recommended)
-- Expo CLI (runs via `npx`)
+- Node.js (LTS)
+- Expo Go app on your device (for testing)
 
-### Install & Run
+### Installation
 
 ```bash
 npm install
 npx expo start
 ```
+
+Scan the QR code with Expo Go (Android) or Camera app (iOS).
+
+## Screenshots
+
+

@@ -33,8 +33,4 @@ export const animeCardStyles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 8,
   },
-
-  star: {
-    color: colors.accent,
-  },
 });
