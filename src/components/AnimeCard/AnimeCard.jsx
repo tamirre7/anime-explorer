@@ -1,5 +1,5 @@
-import { Image, Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Image, Pressable, Text, View } from 'react-native';
 import { animeCardStyles } from './styles';
 
 export default function AnimeCard({
@@ -18,19 +18,21 @@ export default function AnimeCard({
       style={animeCardStyles.seriesCard}
     >
       <Image
-        source={imageUrl}
+        source={{ uri: imageUrl }}
         style={animeCardStyles.seriesImage}
         resizeMode="cover"
       />
-      <Text style={animeCardStyles.seriesTitle} numberOfLines={2}>
-        {title}
-      </Text>
-      <Text style={animeCardStyles.seriesMetaData}>{genres.join(' • ')}</Text>
-      <View style={animeCardStyles.seriesDataContainer}>
-        <Text style={animeCardStyles.seriesMetaData}>{airingYears}</Text>
-        <Text style={animeCardStyles.seriesMetaData}>
-          <Text style={animeCardStyles.star}>★</Text> {score}
+      <View style={animeCardStyles.contentContainer}>
+        <Text style={animeCardStyles.seriesTitle} numberOfLines={2}>
+          {title}
         </Text>
+        <View style={animeCardStyles.spacer} />
+        <View style={animeCardStyles.seriesDataContainer}>
+          <Text style={animeCardStyles.seriesMetaData}>
+            <Text style={animeCardStyles.star}>★</Text> {score}
+          </Text>
+          <Text style={animeCardStyles.seriesMetaData}>{airingYears}</Text>
+        </View>
       </View>
     </Pressable>
   );

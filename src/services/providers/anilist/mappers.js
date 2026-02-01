@@ -5,19 +5,20 @@ import { formatAiringYears } from '../../../utils/airingYears';
 
 export function anilistToAnimeSummary(anime) {
   return createAnimeSummary({
-    id: String(anime.id),
-    title: anime?.title?.english,
+    id: anime.id,
+    title: anime?.title?.english || anime?.title?.romaji || '',
     score: anime.averageScore ?? null,
     genres: anime.genres ?? [],
     imageUrl: anime?.coverImage?.large ?? null,
     airingYears: getAiringYears(anime) ?? '',
+    yearStart: anime?.startDate?.year ?? null,
   });
 }
 
 export function anilistToAnimeDetails(anime) {
   return createAnimeDetails({
-    id: String(anime.id),
-    title: anime?.title?.english,
+    id: anime.id,
+    title: anime?.title?.english || anime?.title?.romaji || '',
     score: anime.averageScore ?? null,
     genres: anime.genres ?? [],
     imageUrl: anime?.coverImage?.large ?? null,

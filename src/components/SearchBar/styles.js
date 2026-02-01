@@ -20,6 +20,7 @@ export const searchBarStyles = StyleSheet.create({
     borderColor: colors.bg,
     borderRadius: 10,
     padding: 7,
+    color: colors.text,
   },
   inactiveSearchMethod: {
     fontSize: 12,

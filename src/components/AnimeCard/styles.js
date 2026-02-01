@@ -3,18 +3,23 @@ import { colors } from '../../theme/colors';
 
 export const animeCardStyles = StyleSheet.create({
   seriesCard: {
-    paddingHorizontal: 12,
-    paddingVertical: 10,
+    flex: 1,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 12,
+    overflow: 'hidden',
+  },
+  contentContainer: {
+    flex: 1,
+    padding: 10,
+  },
+  spacer: {
+    flexGrow: 1,
   },
   seriesImage: {
     aspectRatio: 2 / 3,
     width: '100%',
-    borderRadius: 10,
-    marginBottom: 8,
   },
   seriesTitle: {
     color: colors.text,
@@ -25,7 +30,8 @@ export const animeCardStyles = StyleSheet.create({
   },
   seriesDataContainer: {
     flexDirection: 'row',
-    gap: 20,
+    justifyContent: 'space-between',
+    marginTop: 8,
   },
 
   star: {

@@ -8,6 +8,7 @@
  * @property {string[]} genres
  * @property {string} imageUrl
  * @property {string} airingYears
+ * @property {number|null} yearStart
  */
 
 /**
@@ -18,6 +19,7 @@
  * @property {string[]} [genres]
  * @property {string} [imageUrl]
  * @property {string} [airingYears]
+ * @property {number|null} [yearStart]
  */
 
 /**
@@ -32,6 +34,7 @@ export function createAnimeSummary(input) {
     genres = [],
     imageUrl = '',
     airingYears = '',
+    yearStart = null,
   } = input;
 
   if (typeof id !== 'number') throw new TypeError('id must be a number');
@@ -45,5 +48,6 @@ export function createAnimeSummary(input) {
     genres,
     imageUrl,
     airingYears,
+    yearStart,
   };
 }

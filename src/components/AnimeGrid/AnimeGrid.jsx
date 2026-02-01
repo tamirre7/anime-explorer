@@ -1,7 +1,7 @@
 import { FlatList, View } from 'react-native';
 import AnimeCard from '../AnimeCard/AnimeCard';
 
-export default function AnimeGrid({ visibleSeries }) {
+export default function AnimeGrid({ visibleSeries, onEndReached }) {
   const numColumns = 2;
 
   return (
@@ -9,8 +9,8 @@ export default function AnimeGrid({ visibleSeries }) {
       key={`grid-${numColumns}`}
       data={visibleSeries}
       renderItem={({ item }) => (
-        <View style={{ flex: 1, marginBottom: 12 }}>
-          <AnimeCard anime={item} />
+        <View style={{ flex: 1, maxWidth: '48%', marginBottom: 12 }}>
+          <AnimeCard {...item} />
         </View>
       )}
       keyExtractor={(item) => String(item.id)}
@@ -21,6 +21,8 @@ export default function AnimeGrid({ visibleSeries }) {
           ? { justifyContent: 'space-between', gap: 12 }
           : undefined
       }
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.6}
     />
   );
 }
