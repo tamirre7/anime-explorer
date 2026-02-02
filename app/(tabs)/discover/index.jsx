@@ -104,7 +104,12 @@ export default function DiscoverTab() {
       )}
 
       {!isLoading && !isError && items.length > 0 && (
-        <AnimeGrid visibleSeries={items} onEndReached={onEndReached} />
+        <AnimeGrid
+          visibleSeries={items}
+          onEndReached={onEndReached}
+          onRefresh={() => activeQuery.refetch()}
+          refreshing={activeQuery.isRefetching}
+        />
       )}
     </SafeAreaView>
   );

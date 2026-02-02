@@ -1,7 +1,13 @@
-import { FlatList, View } from 'react-native';
+import { FlatList, RefreshControl, View } from 'react-native';
 import AnimeCard from '../AnimeCard/AnimeCard';
+import { colors } from '../../theme/colors';
 
-export default function AnimeGrid({ visibleSeries, onEndReached }) {
+export default function AnimeGrid({
+  visibleSeries,
+  onEndReached,
+  onRefresh,
+  refreshing = false,
+}) {
   const numColumns = 2;
 
   return (
@@ -23,6 +29,16 @@ export default function AnimeGrid({ visibleSeries, onEndReached }) {
       }
       onEndReached={onEndReached}
       onEndReachedThreshold={0.6}
+      refreshControl={
+        onRefresh ? (
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.text}
+            colors={[colors.accent]}
+          />
+        ) : undefined
+      }
     />
   );
 }
