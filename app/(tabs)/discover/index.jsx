@@ -3,21 +3,21 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { colors } from '../../../src/theme/colors';
 
-import SearchBar from '../../../src/components/SearchBar/SearchBar';
-import Filters from '../../../src/components/Filters/Filters';
 import AnimeGrid from '../../../src/components/AnimeGrid/AnimeGrid';
+import Filters from '../../../src/components/Filters/Filters';
+import SearchBar from '../../../src/components/SearchBar/SearchBar';
 
-import { SEARCH_BY } from '../../../src/constants/search';
 import { DEFAULT_SORT } from '../../../src/constants/animeSort';
+import { SEARCH_BY } from '../../../src/constants/search';
 
+import useDebouncer from '../../../src/hooks/useDebouncer';
 import useDiscoverInfinite from '../../../src/hooks/useDiscoverInfinite';
 import useSearchAnimeInfinite from '../../../src/hooks/useSearchAnimeInfinite';
 import useSearchByCharacter from '../../../src/hooks/useSearchByCharacter';
-import useDebouncer from '../../../src/hooks/useDebouncer';
 
+import EmptyState from '../../../src/components/states/EmptyState';
 import ErrorState from '../../../src/components/states/ErrorState';
 import LoadingState from '../../../src/components/states/LoadingState';
-import EmptyState from '../../../src/components/states/EmptyState';
 
 export default function DiscoverTab() {
   const [query, setQuery] = useState('');
@@ -97,7 +97,10 @@ export default function DiscoverTab() {
       {isEmpty && !isError && !isLoading && <EmptyState />}
 
       {isError && !isLoading && (
-        <ErrorState message={activeQuery.error?.message} />
+        <ErrorState
+          message={activeQuery.error?.message}
+          onRetry={() => activeQuery.refetch()}
+        />
       )}
 
       {!isLoading && !isError && items.length > 0 && (
