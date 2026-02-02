@@ -26,6 +26,8 @@ export default function AnimeGrid({
       columnWrapperStyle={numColumns > 1 ? animeGridStyles.columnWrapper : undefined}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.6}
+      keyboardDismissMode="on-drag"
+      keyboardShouldPersistTaps="handled"
       refreshControl={
         onRefresh ? (
           <RefreshControl
