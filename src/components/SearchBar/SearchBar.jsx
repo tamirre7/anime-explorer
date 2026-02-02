@@ -1,7 +1,7 @@
-import { Pressable, View, Text, TextInput } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 import { SEARCH_BY } from '../../constants/search';
-import { searchBarStyles } from './styles';
 import { colors } from '../../theme/colors';
+import { searchBarStyles } from './styles';
 
 export default function SearchBar({
   onQueryChange,
@@ -11,7 +11,7 @@ export default function SearchBar({
 }) {
   const PLACEHOLDER_BY_MODE = {
     [SEARCH_BY.TITLE]: 'Search by series title...',
-    [SEARCH_BY.CHARACTER]: 'Search by character name...',
+    [SEARCH_BY.CHARACTER]: 'Find anime by character (e.g., Eren Jaeger)',
   };
 
   const inputPlaceholder = PLACEHOLDER_BY_MODE[searchBy];

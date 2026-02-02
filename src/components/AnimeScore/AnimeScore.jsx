@@ -1,10 +1,10 @@
 import { Text } from 'react-native';
-import { animeCardStyles } from '../AnimeCard/styles';
+import { animeScoreStyles } from './styles';
 
 export default function AnimeScore({ score }) {
 return (
-    <Text style={animeCardStyles.seriesMetaData}>
-            <Text style={animeCardStyles.star}>★</Text> {score}
+    <Text style={animeScoreStyles.seriesMetaData}>
+            <Text style={animeScoreStyles.star}>★</Text> {score}
           </Text>
 )
 }
