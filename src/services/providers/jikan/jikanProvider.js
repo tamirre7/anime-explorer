@@ -48,23 +48,25 @@ async function searchAnimeByName({ animeName, page = 1, sort = DEFAULT_SORT }) {
     nextPage: hasNext ? page + 1 : null,
   };
 }
-async function searchAnimeByCharacter(characterName, limit = 12) {
-  //get char id
+async function searchAnimeByCharacter(characterName, limit = 6) {
   const normalizedCharacterName = encodeURIComponent(characterName.trim());
-  const charactersFounded = await fetchJson(
-    `${JIKAN_BASE_URL}characters?q=${normalizedCharacterName}&page=1`,
+
+  // Step 1: Find character by name (order by favorites to get most popular first)
+  const charactersFound = await fetchJson(
+    `${JIKAN_BASE_URL}characters?q=${normalizedCharacterName}&order_by=favorites&sort=desc&page=1`,
   );
 
-  const first = charactersFounded.data?.[0];
-  if (!first) return [];
+  const firstCharacter = charactersFound.data?.[0];
+  if (!firstCharacter) return [];
 
-  //get anime of char
+  // Step 2: Get character's anime appearances
   const charAnimeRes = await fetchJson(
-    `${JIKAN_BASE_URL}characters/${first.mal_id}/anime`,
+    `${JIKAN_BASE_URL}characters/${firstCharacter.mal_id}/anime`,
   );
 
+  // Step 3: Fetch full details for each anime
   const animeIds = (charAnimeRes.data ?? [])
-    .map((animeCharDetails) => animeCharDetails?.anime?.mal_id)
+    .map((entry) => entry?.anime?.mal_id)
     .filter(Boolean)
     .slice(0, limit);
 
