@@ -1,16 +1,10 @@
-import { View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { colors } from '../../theme/colors';
+import { stateStyles } from './styles';
 
 export default function LoadingState() {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.bg,
-      }}
-    >
+    <View style={stateStyles.container}>
       <ActivityIndicator color={colors.text} />
     </View>
   );

@@ -3,17 +3,17 @@ import { SEARCH_BY } from '../../constants/search';
 import { colors } from '../../theme/colors';
 import { searchBarStyles } from './styles';
 
+const PLACEHOLDER_BY_MODE = {
+  [SEARCH_BY.TITLE]: 'Search by series title...',
+  [SEARCH_BY.CHARACTER]: 'Find anime by character (e.g., Eren Jaeger)',
+};
+
 export default function SearchBar({
   onQueryChange,
   query,
   searchBy,
   onSearchByChange,
 }) {
-  const PLACEHOLDER_BY_MODE = {
-    [SEARCH_BY.TITLE]: 'Search by series title...',
-    [SEARCH_BY.CHARACTER]: 'Find anime by character (e.g., Eren Jaeger)',
-  };
-
   const inputPlaceholder = PLACEHOLDER_BY_MODE[searchBy];
 
   return (

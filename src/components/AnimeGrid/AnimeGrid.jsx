@@ -1,6 +1,7 @@
 import { FlatList, RefreshControl, View } from 'react-native';
-import AnimeCard from '../AnimeCard/AnimeCard';
 import { colors } from '../../theme/colors';
+import AnimeCard from '../AnimeCard/AnimeCard';
+import { animeGridStyles } from './styles';
 
 export default function AnimeGrid({
   visibleSeries,
@@ -15,18 +16,14 @@ export default function AnimeGrid({
       key={`grid-${numColumns}`}
       data={visibleSeries}
       renderItem={({ item }) => (
-        <View style={{ flex: 1, maxWidth: '48%', marginBottom: 12 }}>
+        <View style={animeGridStyles.cardWrapper}>
           <AnimeCard {...item} />
         </View>
       )}
       keyExtractor={(item) => String(item.id)}
       numColumns={numColumns}
-      contentContainerStyle={{ padding: 12 }}
-      columnWrapperStyle={
-        numColumns > 1
-          ? { justifyContent: 'space-between', gap: 12 }
-          : undefined
-      }
+      contentContainerStyle={animeGridStyles.contentContainer}
+      columnWrapperStyle={numColumns > 1 ? animeGridStyles.columnWrapper : undefined}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.6}
       refreshControl={

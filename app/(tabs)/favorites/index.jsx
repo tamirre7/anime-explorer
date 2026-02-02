@@ -1,9 +1,3 @@
-import { View, Text } from 'react-native';
+import FavoritesScreen from '../../../src/screens/FavoritesScreen/FavoritesScreen';
 
-export default function FavoritesTab() {
-  return (
-    <View>
-      <Text>hello favorites</Text>
-    </View>
-  );
-}
+export default FavoritesScreen;
