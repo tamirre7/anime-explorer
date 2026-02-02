@@ -1,20 +1,12 @@
-import { View, Text } from 'react-native';
-import { colors } from '../../theme/colors';
+import { Text, View } from 'react-native';
+import { stateStyles } from './styles';
 
-export default function EmptyState() {
+export default function EmptyState({
+  message = 'No Results. Try Searching for something else',
+}) {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.bg,
-        padding: 16,
-      }}
-    >
-      <Text style={{ color: colors.text, textAlign: 'center' }}>
-        No Results. Try Searching for something else
-      </Text>
+    <View style={stateStyles.container}>
+      <Text style={stateStyles.text}>{message}</Text>
     </View>
   );
 }

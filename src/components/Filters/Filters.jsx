@@ -1,12 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Modal, Pressable, Text, View } from 'react-native';
 import { ANIME_SORT } from '../../constants/animeSort';
 import { SORT_LABEL } from '../../constants/sortLabels';
 import { filtersStyles } from './styles';
 
+const SORT_OPTIONS = Object.values(ANIME_SORT);
+
 export default function Filters({ sort, onSortChange }) {
   const [open, setOpen] = useState(false);
-  const sortOptions = useMemo(() => Object.values(ANIME_SORT), []);
 
   return (
     <>
@@ -28,7 +29,7 @@ export default function Filters({ sort, onSortChange }) {
           <Pressable style={filtersStyles.sheet} onPress={() => {}}>
             <Text style={filtersStyles.sheetTitle}>Sort by</Text>
 
-            {sortOptions.map((value) => {
+            {SORT_OPTIONS.map((value) => {
               const active = value === sort;
 
               return (

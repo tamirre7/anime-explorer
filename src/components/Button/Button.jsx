@@ -7,6 +7,7 @@ export default function Button({
   onPress,
   variant = 'primary',
   disabled = false,
+  style,
 }) {
   const isIconOnly = icon && !title;
 
@@ -16,6 +17,7 @@ export default function Button({
     variant === 'primary' && buttonStyles.primary,
     variant === 'secondary' && buttonStyles.secondary,
     disabled && buttonStyles.disabled,
+    style,
   ];
 
   const textStyle = [

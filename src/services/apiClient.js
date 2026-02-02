@@ -1,7 +1,7 @@
 import { anilistProvider } from './providers/anilist/anilistProvider';
 import { jikanProvider } from './providers/jikan/jikanProvider';
 
-const PROVIDER = 'JIKAN'; // 'JIKAN' | 'ANILIST'
+const PROVIDER = 'ANILIST'; // 'JIKAN' | 'ANILIST'
 
 const PROVIDERS = {
   JIKAN: jikanProvider,

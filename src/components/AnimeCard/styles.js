@@ -10,6 +10,9 @@ export const animeCardStyles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
   },
+  imageContainer: {
+    position: 'relative',
+  },
   contentContainer: {
     flex: 1,
     padding: 10,
@@ -20,6 +23,15 @@ export const animeCardStyles = StyleSheet.create({
   seriesImage: {
     aspectRatio: 2 / 3,
     width: '100%',
+  },
+  favoriteButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    borderRadius: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 6,
   },
   seriesTitle: {
     color: colors.text,
