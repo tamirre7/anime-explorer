@@ -1,7 +1,7 @@
 export const ANIME_BY_ID = `query ($id: Int) {
   Media(id: $id, type: ANIME) {
     id
-    title { english }
+    title { english romaji }
     episodes
     averageScore
     genres
@@ -64,7 +64,7 @@ query ($id: Int, $page: Int, $perPage: Int) {
     media(page: $page, perPage: $perPage, type: ANIME) {
       nodes {
         id
-        title { english }
+        title { english romaji }
         averageScore
         genres
         startDate { year }

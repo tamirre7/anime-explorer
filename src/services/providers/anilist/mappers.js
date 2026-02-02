@@ -22,9 +22,16 @@ export function anilistToAnimeDetails(anime) {
     imageUrl: anime?.coverImage?.large ?? null,
     airingYears: getAiringYears(anime) ?? '',
     episodes: anime.episodes ?? null,
-    synopsis: anime.description ?? '',
+    synopsis: stripHtml(anime.description ?? ''),
     rating: anime.isAdult ? 'Adult' : null,
   });
+}
+
+function stripHtml(html) {
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]*>/g, '')
+    .trim();
 }
 
 function getAiringYears(anime) {
